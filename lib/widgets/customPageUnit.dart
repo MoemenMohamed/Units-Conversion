@@ -16,6 +16,8 @@ class UnitConversion extends StatefulWidget {
 }
 
 class _UnitConversionState extends State<UnitConversion> {
+  double tempResult = 0.0;
+
   String tempData = "";
 
   String resultData = "0.0";
@@ -27,10 +29,9 @@ class _UnitConversionState extends State<UnitConversion> {
     // TODO: implement build
     return Container(
       padding: const EdgeInsets.only(top: 15),
-      width: 300,
       height: 180,
       decoration: BoxDecoration(
-        color: Colors.blue.shade400,
+        color: Colors.blue.shade100,
       ),
       child: Column(
         children: [
@@ -54,42 +55,68 @@ class _UnitConversionState extends State<UnitConversion> {
                   maxLength: 6,
                 ),
               ),
-              MaterialButton(
-                color: Colors.blueGrey.shade200,
-                onPressed: () {
-                  setState(() {});
-                  resultData =
-                      (double.parse(tempData) * widget.convFactors).toString();
-                },
-                child: const Icon(Icons.double_arrow_rounded),
+              CircleAvatar(
+                backgroundColor: Colors.blue.shade400,
+                child: IconButton(
+                  color: Colors.blueGrey.shade200,
+                  onPressed: () {
+                    setState(() {});
+                    resultData = (double.parse(tempData) * widget.convFactors)
+                        .toString();
+                  },
+                  icon: const Icon(
+                    Icons.double_arrow_rounded,
+                    color: Colors.black,
+                  ),
+                ),
               ),
               Container(
                 width: 100,
                 height: 30,
                 decoration: BoxDecoration(border: Border.all()),
                 child: Text(
-                  resultData,
+                  "$resultData ${widget.convString}",
                   textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
-              Text(
-                widget.convString,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              )
-              //TextField(controller: outputData,),
             ],
           ),
-          TextButton(
-              onPressed: () {
-                inputData.text = "";
-              },
-              child: Text(
-                "Clear",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 18),
-              ))
+          Row(
+            children: [
+              Spacer(
+                flex: 1,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    tempResult = double.parse(widget.convString);
+                  },
+                  child: Text(
+                    "Save Length",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 14),
+                  )),
+              Spacer(
+                flex: 4,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    inputData.text = "";
+                  },
+                  child: Text(
+                    "Clear",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 14),
+                  )),
+              Spacer(
+                flex: 1,
+              ),
+            ],
+          )
         ],
       ),
     );
