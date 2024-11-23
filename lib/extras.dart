@@ -1,40 +1,9 @@
-class ConversionData {
-  String convTitle;
-  double convFactor;
-  String convString;
+import 'widgets/custom_temp_conv_class.dart';
 
-  ConversionData(
-      {required this.convTitle,
-      required this.convFactor,
-      required this.convString});
-}
-
-List<ConversionData> convData = [
-  ConversionData(
-      convTitle: "meter to centimeters", convFactor: 100, convString: "cm"),
-  ConversionData(
-      convTitle: "meter to millimeters", convFactor: 1000, convString: "mm"),
-  ConversionData(
-      convTitle: "centimeter to meters", convFactor: 0.01, convString: "m"),
-  ConversionData(
-      convTitle: "millimeter to meters", convFactor: 0.001, convString: "m"),
-  ConversionData(
-      convTitle: "meters to micrometers", convFactor: 1000000, convString: "um")
+List<TempCustomConversionUnit> tempTiles = [
+TempCustomConversionUnit(convTitle: "Celsius to Kelvin",convUnit: "k",factor1:1,factor2: 273.15 ),
+TempCustomConversionUnit(convTitle: "Celsius to Fahrenheit",convUnit: "F",factor1:9/5,factor2: 32 ),
+TempCustomConversionUnit(convTitle: "Kelvin to Celsius",convUnit: "C",factor1:1,factor2: -273.15 ),
 ];
 
-class ConversionDataPressure {
-  String convTitleP;
-  double convFactorP;
-  String convStringP;
 
-  ConversionDataPressure(
-      {required this.convTitleP,
-      required this.convFactorP,
-      required this.convStringP});
-}
-
-List<ConversionDataPressure> convPressureData = [
-  ConversionDataPressure(convTitleP: "pascal to bar", convFactorP: 0.00001, convStringP: "bar"),
-  ConversionDataPressure(convTitleP: "bar to pascal", convFactorP: 100000, convStringP: "pa"),
-  ConversionDataPressure(convTitleP: "bar to atm", convFactorP: 0.986923, convStringP: "atm"),
-];
