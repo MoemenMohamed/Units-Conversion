@@ -2,15 +2,14 @@ import 'custom_conv_class.dart';
 
 class LengthCustomConversionUnit extends CustomConversionUnit {
   double factor1;
-  double inputData;
 
-  LengthCustomConversionUnit(
-      {required super.convTitle,
-        required super.convUnit,
-        required this.factor1,
-        required this.inputData});
+  LengthCustomConversionUnit({
+    required super.convTitle,
+    required super.convUnit,
+    required this.factor1,
+  });
 
-  double doConversion() {
+  double doConversion(double inputData) {
     return factor1 * inputData;
   }
 }

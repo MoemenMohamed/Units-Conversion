@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../extras.dart';
 
-class TemperatureConversion extends StatefulWidget {
-  const TemperatureConversion({super.key});
+class LengthConversion extends StatefulWidget {
+  const LengthConversion({super.key});
 
   @override
-  State<TemperatureConversion> createState() => _TemperatureConversionState();
+  State<LengthConversion> createState() => _LengthConversionState();
 }
 
-class _TemperatureConversionState extends State<TemperatureConversion> {
+class _LengthConversionState extends State<LengthConversion> {
   List<String> inputText = ["0", "0", "0"];
   List<String> outputText = ["0", "0", "0"];
 
@@ -18,11 +18,11 @@ class _TemperatureConversionState extends State<TemperatureConversion> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Temperature Conversion",
+          "Length Conversion",
           style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.blue.shade800),
+              color: Colors.green.shade800),
         ),
       ),
       body: ListView.separated(
@@ -34,8 +34,9 @@ class _TemperatureConversionState extends State<TemperatureConversion> {
                     height: 15,
                   ),
                   Text(
-                    tempTiles[index].convTitle,
-                    style: TextStyle(fontSize: 18,color: Colors.blue.shade600),
+                    lengthTiles[index].convTitle,
+                    style:
+                        TextStyle(fontSize: 18, color: Colors.green.shade600),
                   ),
                   const SizedBox(
                     height: 10,
@@ -54,12 +55,15 @@ class _TemperatureConversionState extends State<TemperatureConversion> {
                           },
                         ),
                       ),
-                      const Icon(Icons.double_arrow_outlined),
+                      const Icon(
+                        Icons.double_arrow_outlined,
+                        color: Colors.green,
+                      ),
                       Container(
                           width: 100,
                           child: Text(
-                            "${outputText[index]} ${tempTiles[index].convUnit}",
-                            style: TextStyle(fontSize: 18),
+                            "${outputText[index]} ${lengthTiles[index].convUnit}",
+                            style: const TextStyle(fontSize: 18),
                           )),
                     ],
                   ),
@@ -74,13 +78,13 @@ class _TemperatureConversionState extends State<TemperatureConversion> {
                               minimumSize: const Size(80, 50)),
                           onPressed: () {
                             setState(() {});
-                            outputText[index] = tempTiles[index]
+                            outputText[index] = lengthTiles[index]
                                 .doConversion(double.parse(inputText[index]))
-                                .toString();
+                                .toStringAsExponential(0);
                           },
                           child: const Text(
                             "Convert",
-                            style: TextStyle(fontSize: 20, color: Colors.blue),
+                            style: TextStyle(fontSize: 20, color: Colors.green),
                           )),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -91,7 +95,7 @@ class _TemperatureConversionState extends State<TemperatureConversion> {
                           },
                           child: const Text(
                             "Clear",
-                            style: TextStyle(fontSize: 20, color: Colors.blue),
+                            style: TextStyle(fontSize: 20, color: Colors.green),
                           )),
                     ],
                   ),
@@ -106,7 +110,7 @@ class _TemperatureConversionState extends State<TemperatureConversion> {
             return Container(
               width: double.infinity,
               height: 10,
-              color: Colors.blue.shade200,
+              color: Colors.green.shade200,
             );
           },
           itemCount: tempTiles.length),

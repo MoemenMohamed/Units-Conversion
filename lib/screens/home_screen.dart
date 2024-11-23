@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'about_us.dart';
 
+import 'length_conversion.dart';
 import 'temperature_conversion.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,51 +27,51 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 80,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return Placeholder();
-                    }));
-                  },
-                  child: Text("Length"),
-                  style: ElevatedButton.styleFrom(minimumSize: Size(130, 45)),
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return Placeholder();
-                      }));
-                    },
-                    child: Text("Pressure"),
-                    style: ElevatedButton.styleFrom(minimumSize: Size(130, 45)))
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
-                        return TemperatureConversion();
-                      }));
-                    },
-                    child: const Text("Temperature"),
-                    style:
-                        ElevatedButton.styleFrom(minimumSize: Size(130, 45))),
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(minimumSize: Size(130, 45)),
-                    child: const Text("Speed"),
-                    )
-              ],
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return LengthConversion();
+                }));
+              },
+              style: ElevatedButton.styleFrom(minimumSize: Size(220, 90)),
+              child: Text(
+                "Length",
+                style: TextStyle(fontSize: 25, color: Colors.green.shade900),
+              ),
             ),
             const Spacer(
-              flex: 2,
+              flex: 1,
+            ),
+            ElevatedButton(
+                onPressed: null,
+                child: Text("Pressure",
+                    style: TextStyle(fontSize: 25, color: Colors.red.shade900)),
+                style: ElevatedButton.styleFrom(minimumSize: Size(220, 90))),
+            const Spacer(
+              flex: 1,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return TemperatureConversion();
+                }));
+              },
+              style: ElevatedButton.styleFrom(minimumSize: Size(220, 90)),
+              child: Text("Temperature",
+                  style: TextStyle(fontSize: 25, color: Colors.blue.shade900)),
+            ),
+            const Spacer(
+              flex: 1,
+            ),
+            ElevatedButton(
+              onPressed: null,
+              style: ElevatedButton.styleFrom(minimumSize: Size(220, 90)),
+              child: Text("Speed",
+                  style:
+                      TextStyle(fontSize: 25, color: Colors.orange.shade900)),
+            ),
+            const Spacer(
+              flex: 3,
             ),
           ],
         ),
