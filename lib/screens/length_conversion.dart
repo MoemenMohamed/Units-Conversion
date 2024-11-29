@@ -10,8 +10,8 @@ class LengthConversion extends StatefulWidget {
 }
 
 class _LengthConversionState extends State<LengthConversion> {
-  List<String> inputText = ["0", "0", "0"];
-  List<String> outputText = ["0", "0", "0"];
+  List<String> inputText = ["0", "0", "0","0"];
+  List<String> outputText = ["0", "0", "0","0"];
 
   @override
   Widget build(BuildContext context) {
@@ -27,84 +27,85 @@ class _LengthConversionState extends State<LengthConversion> {
       ),
       body: ListView.separated(
           itemBuilder: (context, index) {
-            return Container(
-              child: Column(
+            return ExpansionTile(
+                title: Text(
+                  lengthTiles[index].convTitle,
+                  style: TextStyle(fontSize: 18, color: Colors.green.shade600),
+                ),
                 children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    lengthTiles[index].convTitle,
-                    style:
-                        TextStyle(fontSize: 18, color: Colors.green.shade600),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  Column(
                     children: [
-                      Container(
-                        width: 100,
-                        child: TextField(
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                          decoration: const InputDecoration(
-                              border: OutlineInputBorder()),
-                          onChanged: (data) {
-                            inputText[index] = data;
-                          },
-                        ),
+                      const SizedBox(
+                        height: 10,
                       ),
-                      const Icon(
-                        Icons.double_arrow_outlined,
-                        color: Colors.green,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            width: 100,
+                            child: TextField(
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold),
+                              decoration: const InputDecoration(
+                                  border: OutlineInputBorder()),
+                              onChanged: (data) {
+                                inputText[index] = data;
+                              },
+                            ),
+                          ),
+                          const Icon(
+                            Icons.double_arrow_outlined,
+                            color: Colors.green,
+                          ),
+                          Container(
+                              width: 120,
+                              child: Text(
+                                "${outputText[index]} ${lengthTiles[index].convUnit}",
+                                style: const TextStyle(fontSize: 18),
+                              )),
+                        ],
                       ),
-                      Container(
-                          width: 100,
-                          child: Text(
-                            "${outputText[index]} ${lengthTiles[index].convUnit}",
-                            style: const TextStyle(fontSize: 18),
-                          )),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(80, 50)),
+                              onPressed: () {
+                                setState(() {});
+                                outputText[index] = lengthTiles[index]
+                                    .doConversion(
+                                        double.parse(inputText[index]))
+                                    .toStringAsExponential(2);
+                              },
+                              child: const Text(
+                                "Convert",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.green),
+                              )),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(80, 50)),
+                              onPressed: () {
+                                setState(() {});
+                                outputText[index] = "0";
+                              },
+                              child: const Text(
+                                "Clear",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.green),
+                              )),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(80, 50)),
-                          onPressed: () {
-                            setState(() {});
-                            outputText[index] = lengthTiles[index]
-                                .doConversion(double.parse(inputText[index]))
-                                .toStringAsExponential(0);
-                          },
-                          child: const Text(
-                            "Convert",
-                            style: TextStyle(fontSize: 20, color: Colors.green),
-                          )),
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(80, 50)),
-                          onPressed: () {
-                            setState(() {});
-                            outputText[index] = "0";
-                          },
-                          child: const Text(
-                            "Clear",
-                            style: TextStyle(fontSize: 20, color: Colors.green),
-                          )),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                ],
-              ),
-            );
+                ]);
           },
           separatorBuilder: (context, index) {
             return Container(
@@ -113,7 +114,7 @@ class _LengthConversionState extends State<LengthConversion> {
               color: Colors.green.shade200,
             );
           },
-          itemCount: tempTiles.length),
+          itemCount: lengthTiles.length),
     );
   }
 }

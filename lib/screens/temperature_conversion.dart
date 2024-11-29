@@ -27,80 +27,82 @@ class _TemperatureConversionState extends State<TemperatureConversion> {
       ),
       body: ListView.separated(
           itemBuilder: (context, index) {
-            return Container(
-              child: Column(
+            return ExpansionTile(
+                title: Text(
+                  tempTiles[index].convTitle,
+                  style: TextStyle(fontSize: 18, color: Colors.blue.shade600),
+                ),
                 children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    tempTiles[index].convTitle,
-                    style: TextStyle(fontSize: 18,color: Colors.blue.shade600),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  Column(
                     children: [
-                      Container(
-                        width: 100,
-                        child: TextField(
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                          decoration: const InputDecoration(
-                              border: OutlineInputBorder()),
-                          onChanged: (data) {
-                            inputText[index] = data;
-                          },
-                        ),
+                      const SizedBox(
+                        height: 10,
                       ),
-                      const Icon(Icons.double_arrow_outlined),
-                      Container(
-                          width: 100,
-                          child: Text(
-                            "${outputText[index]} ${tempTiles[index].convUnit}",
-                            style: TextStyle(fontSize: 18),
-                          )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            width: 100,
+                            child: TextField(
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold),
+                              decoration: const InputDecoration(
+                                  border: OutlineInputBorder()),
+                              onChanged: (data) {
+                                inputText[index] = data;
+                              },
+                            ),
+                          ),
+                          const Icon(Icons.double_arrow_outlined),
+                          Container(
+                              width: 100,
+                              child: Text(
+                                "${outputText[index]} ${tempTiles[index].convUnit}",
+                                style: TextStyle(fontSize: 18),
+                              )),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(80, 50)),
+                              onPressed: () {
+                                setState(() {});
+                                outputText[index] = tempTiles[index]
+                                    .doConversion(
+                                        double.parse(inputText[index]))
+                                    .toStringAsExponential(2);
+                              },
+                              child: const Text(
+                                "Convert",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.blue),
+                              )),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(80, 50)),
+                              onPressed: () {
+                                setState(() {});
+                                outputText[index] = "0";
+                              },
+                              child: const Text(
+                                "Clear",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.blue),
+                              )),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(80, 50)),
-                          onPressed: () {
-                            setState(() {});
-                            outputText[index] = tempTiles[index]
-                                .doConversion(double.parse(inputText[index]))
-                                .toString();
-                          },
-                          child: const Text(
-                            "Convert",
-                            style: TextStyle(fontSize: 20, color: Colors.blue),
-                          )),
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(80, 50)),
-                          onPressed: () {
-                            setState(() {});
-                            outputText[index] = "0";
-                          },
-                          child: const Text(
-                            "Clear",
-                            style: TextStyle(fontSize: 20, color: Colors.blue),
-                          )),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                ],
-              ),
-            );
+                ]);
           },
           separatorBuilder: (context, index) {
             return Container(

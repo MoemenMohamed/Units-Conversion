@@ -10,5 +10,6 @@ TempCustomConversionUnit(convTitle: "Kelvin to Celsius",convUnit: "C",factor1:1,
 List<LengthCustomConversionUnit> lengthTiles = [
   LengthCustomConversionUnit(convTitle: "Meter to Cm",convUnit: "cm",factor1:100),
   LengthCustomConversionUnit(convTitle: "Meter to mm",convUnit: "mm",factor1:1000),
-  LengthCustomConversionUnit(convTitle: "Meter to microMeter",convUnit: "um",factor1:1000000),
+  LengthCustomConversionUnit(convTitle: "Meter to Micrometer",convUnit: "μm",factor1:1000000),
+  LengthCustomConversionUnit(convTitle: "Meter to Decimeter",convUnit: "dm",factor1:10),
 ];
